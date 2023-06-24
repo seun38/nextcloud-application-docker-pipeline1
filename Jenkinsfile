@@ -7,7 +7,7 @@ pipeline {
     agent any
 
     environment {
-        registry = "618348145639.dkr.ecr.us-east-1.amazonaws.com/liontech-demo-automation"
+        registry = "757750585556.dkr.ecr.us-east-1.amazonaws.com/liontechclass20"
     }
     stages {
         stage('Checkout') {
@@ -28,8 +28,8 @@ pipeline {
         stage ("Push to ECR") {
             steps {
                 script {
-                    sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 618348145639.dkr.ecr.us-east-1.amazonaws.com'
-                    sh 'docker push 618348145639.dkr.ecr.us-east-1.amazonaws.com/liontech-demo-automation:$BUILD_NUMBER'
+                    sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 757750585556.dkr.ecr.us-east-1.amazonaws.com'
+                    sh 'docker push 757750585556.dkr.ecr.us-east-1.amazonaws.com/liontechclass20:$BUILD_NUMBER'
                     
                 }
             }
