@@ -16,12 +16,6 @@ pipeline {
             }
         }
         
-        stage ("Build JAR") {
-            steps {
-                sh "mvn clean install"
-            }
-        }
-        
         stage ("Build Image") {
             steps {
                 script {
@@ -39,35 +33,6 @@ pipeline {
                     
                 }
             }
-        }
-        stage('connnect'){
-            steps{
-                withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'prince', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
-                 sh ('kubectl apply -f  release/kubernetes-manifests.yaml')
-}
-            }
-        }
-        
-        stage("helmdeploy"){
-            steps{
-
-                script{
-                    sh "helm upgrade first --install mychart --namespace liontech-dev --set image.tag=$BUILD_NUMBER"
-                }
-            }
-        }
-        
-        
-        stage ("Helm package") {
-            steps {
-                    sh "helm package springboot"
-                }
-            }
-                
-        stage ("Helm install") {
-            steps {
-                    sh "helm upgrade myrelease-21 springboot-0.1.0.tgz"
-                }
-            }
+        }    
     }
 }
