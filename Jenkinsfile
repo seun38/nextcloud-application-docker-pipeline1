@@ -7,7 +7,7 @@ pipeline {
     agent any
 
     environment {
-        registry = "docker push 693120310247.dkr.ecr.us-east-1.amazonaws.com/nextcloudapp"
+        registry = "693120310247.dkr.ecr.us-east-1.amazonaws.com/nextcloudapp"
     }
     stages {
         stage('Checkout') {
